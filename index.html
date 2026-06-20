@@ -316,357 +316,206 @@
             </div>
 
             <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
-              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-stone-700 text-amber-200 font-sans font-bold flex items-center justify-center text-base shadow">
-                雨
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-emerald-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">
+                金
               </span>
               <div class="text-sm space-y-1">
-                <span class="font-bold text-stone-800 tracking-wide font-sans block dark:text-stone-300">Rain or Shine Event</span>
+                <span class="font-bold text-emerald-800 tracking-wide font-sans block dark:text-emerald-400">Registration Fee</span>
                 <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
-                  Come weather-ready. The cozy flats have excellent indoor and sheltered areas, so the party will proceed flawlessly!
+                  120,000 Gs covers all the delicious grilled meats, sides, and a great night out with friends!
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <form id="step1Form" class="space-y-4">
-          <div class="space-y-1.5">
-            <label for="name" class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
-              Your Name <span class="text-rose-500">*</span>
-            </label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-stone-400 pointer-events-none">
-                <i data-lucide="user" class="w-4.5 h-4.5"></i>
-              </span>
-              <input 
-                type="text" 
-                id="name" 
-                required 
-                placeholder="e.g. Kenji Tanaka / Yasuhide Taira" 
-                class="w-full pl-12 pr-4 py-3 bg-white border-2 border-stone-200 rounded-2xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all dark:bg-stone-950 dark:border-stone-800 dark:focus:ring-amber-400"
-              />
-            </div>
+        <!-- Form -->
+        <form id="step1Form" class="space-y-4" onsubmit="return false;">
+          <div class="flex flex-col gap-2">
+            <label for="name" class="text-sm font-bold text-stone-700 dark:text-stone-300">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="e.g., Taro Yamada" required class="px-4 py-2.5 rounded-xl border border-amber-200 bg-white text-stone-900 placeholder-stone-400 dark:bg-stone-900 dark:border-stone-700 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-600"/>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="email" class="text-sm font-bold text-stone-700 dark:text-stone-300">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="e.g., taro@example.com" required class="px-4 py-2.5 rounded-xl border border-amber-200 bg-white text-stone-900 placeholder-stone-400 dark:bg-stone-900 dark:border-stone-700 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-600"/>
           </div>
 
-          <div class="space-y-1.5">
-            <label for="email" class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
-              Email Address <span class="text-rose-500">*</span>
-            </label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-stone-400 pointer-events-none">
-                <i data-lucide="mail" class="w-4.5 h-4.5"></i>
-              </span>
-              <input 
-                type="email" 
-                id="email" 
-                required 
-                placeholder="yasuhide.taira@example.com" 
-                class="w-full pl-12 pr-4 py-3 bg-white border-2 border-stone-200 rounded-2xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all dark:bg-stone-950 dark:border-stone-800 dark:focus:ring-amber-400"
-              />
-            </div>
-          </div>
-
-          <button 
-            type="submit" 
-            class="w-full py-4 mt-2 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold text-base transition-all shadow-lg shadow-amber-100 dark:shadow-none flex items-center justify-center space-x-2 font-sans tracking-widest border-b-4 border-amber-700"
-          >
-            <span>PROCEED TO PAYMENT</span>
-            <i data-lucide="arrow-right" class="w-4.5 h-4.5"></i>
+          <button type="submit" class="w-full px-4 py-3 bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 text-white font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2">
+            <span>NEXT: PAYMENT METHOD</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </form>
       </div>
 
-      <!-- STEP 2 -->
+      <!-- STEP 2: PAYMENT -->
       <div id="step2Page" class="step-page space-y-5 hidden">
-        <div class="space-y-1.5 text-center">
-          <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-white font-sans">
-            Attendance Settle Support
-          </h2>
-          <p class="text-sm text-stone-500 dark:text-stone-400">
-            Please make your transfer or select the day-of payment option.
-          </p>
-        </div>
+        <div class="relative rounded-2xl bg-amber-50/40 border-2 border-amber-300 p-4 shadow-sm overflow-hidden dark:bg-stone-950/80 dark:border-stone-800">
+          <h3 class="text-base font-extrabold text-amber-800 uppercase tracking-wider mb-4 font-sans dark:text-amber-400">
+            How will you pay?
+          </h3>
 
-        <div class="p-4 rounded-2xl bg-amber-50/60 border-2 border-amber-300 space-y-3.5 text-sm text-stone-800 dark:bg-stone-950/70 dark:text-stone-200">
-          <div class="flex items-center gap-2 font-bold text-amber-900 dark:text-amber-400 mb-1 border-b border-amber-300 pb-2 font-sans">
-            <i data-lucide="wallet" class="w-4.5 h-4.5 text-orange-600"></i>
-            <span>Bank Transfer Details</span>
-          </div>
-          
-          <div class="grid grid-cols-3 gap-y-3 items-center">
-            <span class="text-stone-500 dark:text-stone-400 font-medium">Bank Name:</span>
-            <span class="col-span-2 font-extrabold text-stone-900 dark:text-white text-sm uppercase">ueno bank</span>
-            
-            <span class="text-stone-500 dark:text-stone-400 font-medium">Account Name:</span>
-            <span class="col-span-2 font-bold text-stone-900 dark:text-stone-100 font-sans">Yasuhide Taira</span>
-
-            <span class="text-stone-500 dark:text-stone-400 font-medium">CI:</span>
-            <div class="col-span-2 flex items-center gap-2">
-              <span class="font-mono font-bold select-all text-amber-900 dark:text-amber-300">9312214</span>
-              <button type="button" onclick="copyToClipboard('9312214', 'CI')" class="p-1 rounded-lg hover:bg-amber-100 dark:hover:bg-stone-800 text-stone-400 hover:text-amber-700 transition" title="Copy CI">
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-            
-            <span class="text-stone-500 dark:text-stone-400 font-medium">Account No:</span>
-            <div class="col-span-2 flex items-center gap-2">
-              <span class="font-mono font-bold select-all bg-white dark:bg-stone-900 px-2 py-1 rounded border border-amber-300/60 text-amber-900 dark:text-amber-300 shadow-sm">
-                6192178180
-              </span>
-              <button type="button" onclick="copyToClipboard('6192178180', 'Account Number')" class="p-1 rounded-lg hover:bg-amber-100 dark:hover:bg-stone-800 text-stone-400 hover:text-amber-700 transition" title="Copy Account Number">
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-
-            <span class="text-stone-600 dark:text-stone-400 font-extrabold font-sans border-t border-amber-200 dark:border-stone-800 pt-2.5">Participation Fee:</span>
-            <span class="col-span-2 font-extrabold text-rose-600 dark:text-rose-400 font-sans text-base border-t border-amber-200 dark:border-stone-800 pt-2.5">
-              120.000 Gs
-            </span>
-          </div>
-        </div>
-
-        <div class="space-y-3">
-          <label class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
-            Select Payment Method
-          </label>
-          <div class="grid grid-cols-2 gap-3">
-            <label class="flex flex-col items-center justify-between p-4 rounded-2xl border-2 border-amber-500 bg-amber-500/5 cursor-pointer hover:border-amber-600 transition-all dark:bg-amber-950/20" id="methodBankLabel">
-              <input type="radio" name="paymentMethod" id="methodBank" value="bank" checked class="sr-only">
-              <i data-lucide="receipt" class="w-6.5 h-6.5 text-amber-700 mb-1.5 dark:text-amber-400"></i>
-              <span class="text-sm font-bold text-stone-800 dark:text-stone-200 font-sans">Bank Transfer</span>
+          <div class="space-y-3">
+            <!-- Bank Transfer Option -->
+            <label id="methodBankLabel" class="relative flex items-start gap-3.5 p-4 border-2 border-stone-200 dark:border-stone-800 rounded-xl cursor-pointer transition-all hover:border-amber-300 dark:hover:border-amber-600">
+              <input type="radio" id="methodBank" name="paymentMethod" value="bank" checked class="mt-1 w-5 h-5 cursor-pointer accent-amber-600"/>
+              <div class="flex-grow">
+                <span class="font-bold text-amber-900 tracking-wide font-sans block dark:text-amber-400">Bank Transfer (Recommended)</span>
+                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">
+                  Transfer 120,000 Gs and upload your proof. We'll confirm and send you meeting details.
+                </p>
+              </div>
             </label>
 
-            <label class="flex flex-col items-center justify-between p-4 rounded-2xl border-2 border-stone-200 cursor-pointer hover:border-amber-500 transition-all dark:border-stone-800" id="methodCashLabel">
-              <input type="radio" name="paymentMethod" id="methodCash" value="cash" class="sr-only">
-              <i data-lucide="banknote" class="w-6.5 h-6.5 text-stone-400 mb-1.5"></i>
-              <span class="text-sm font-bold text-stone-800 dark:text-stone-200 font-sans">Pay Cash on Day</span>
+            <!-- Cash Option -->
+            <label id="methodCashLabel" class="relative flex items-start gap-3.5 p-4 border-2 border-stone-200 dark:border-stone-800 rounded-xl cursor-pointer transition-all hover:border-amber-300 dark:hover:border-amber-600">
+              <input type="radio" id="methodCash" name="paymentMethod" value="cash" class="mt-1 w-5 h-5 cursor-pointer accent-amber-600"/>
+              <div class="flex-grow">
+                <span class="font-bold text-rose-800 tracking-wide font-sans block dark:text-rose-400">Pay on the Day</span>
+                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">
+                  No upfront payment needed. Bring 120,000 Gs cash when you arrive!
+                </p>
+              </div>
             </label>
           </div>
         </div>
 
-        <div id="uploadContainer" class="space-y-2">
-          <label class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
-            Upload Payment Certificate <span class="text-rose-500">*</span>
-          </label>
-          
-          <div 
-            id="dropzone" 
-            class="relative border-2 border-dashed border-amber-300 rounded-2xl p-5 text-center cursor-pointer hover:border-amber-500 hover:bg-amber-500/5 transition-all dark:border-stone-800 dark:hover:border-amber-500"
-          >
-            <input 
-              type="file" 
-              id="certificate" 
-              accept="image/*" 
-              class="hidden"
-            />
-            
+        <!-- Upload Container (Bank Only) -->
+        <div id="uploadContainer" class="space-y-3">
+          <div id="dropzone" class="relative border-2 border-dashed border-amber-300 dark:border-stone-700 rounded-xl p-8 text-center cursor-pointer transition-all hover:bg-amber-50 dark:hover:bg-stone-900/50">
             <div id="dropzonePrompt" class="space-y-2">
-              <div class="mx-auto w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-500 dark:bg-stone-950">
-                <i data-lucide="cloud-upload" class="w-5 h-5"></i>
-              </div>
-              <p class="text-sm text-stone-600 dark:text-stone-400">
-                Drag & drop receipt or <span class="text-amber-600 font-bold">browse folder</span>
-              </p>
-              <p class="text-xs text-stone-400 dark:text-stone-500">
-                Receipt / Screenshot image (JPEG, PNG, WebP)
-              </p>
+              <i data-lucide="upload-cloud" class="w-12 h-12 text-amber-500 mx-auto"></i>
+              <p class="text-sm font-bold text-amber-900 dark:text-amber-400">Drag your payment proof here</p>
+              <p class="text-xs text-stone-500 dark:text-stone-400">or click to browse (JPG, PNG, max 5MB)</p>
             </div>
-
-            <div id="previewContainer" class="hidden space-y-3">
-              <div class="relative inline-block mx-auto max-w-full">
-                <img id="imagePreview" src="" alt="Payment Certificate" class="max-h-36 rounded-xl object-contain mx-auto border border-stone-200 dark:border-stone-800" />
-                <button 
-                  type="button" 
-                  id="removeImageBtn" 
-                  class="absolute -top-2 -right-2 p-1.5 bg-rose-600 text-white rounded-full hover:bg-rose-700 transition shadow-md"
-                >
-                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-              <p id="fileName" class="text-sm font-medium text-stone-600 truncate max-w-xs mx-auto dark:text-stone-300"></p>
+            <div id="previewContainer" class="hidden space-y-2">
+              <img id="imagePreview" class="max-h-40 mx-auto rounded-lg"/>
+              <p id="fileName" class="text-xs text-stone-600 dark:text-stone-400"></p>
+              <button id="removeImageBtn" type="button" class="text-xs text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300 font-semibold">Remove Image</button>
             </div>
+            <input type="file" id="certificate" class="hidden" accept="image/*"/>
           </div>
         </div>
 
-        <div id="cashPrompt" class="hidden p-4 rounded-2xl bg-amber-50/30 border border-amber-200 text-center space-y-2 dark:bg-stone-950/40 dark:border-stone-800">
-          <div class="flex items-center justify-center text-amber-600 dark:text-amber-500">
-            <i data-lucide="smile" class="w-6 h-6"></i>
-          </div>
-          <p class="text-sm font-bold text-stone-800 dark:text-stone-200 font-sans">
-            Cash Option Selected
-          </p>
-          <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
-            No transfer file upload is required. Please tap "Complete Registration" below to confirm, and settle 120.000 Gs in cash with the organizer on the event day.
-          </p>
+        <!-- Cash Prompt (Cash Only) -->
+        <div id="cashPrompt" class="hidden bg-amber-50 dark:bg-stone-950 border border-amber-200 dark:border-stone-800 rounded-xl p-4 text-center space-y-2">
+          <p class="text-sm font-bold text-amber-900 dark:text-amber-400">💰 Please bring 120,000 Gs in cash</p>
+          <p class="text-xs text-stone-600 dark:text-stone-400">We'll see you at the event!</p>
         </div>
 
-        <div class="flex space-x-3 pt-2">
-          <button 
-            type="button" 
-            id="backToStep1"
-            class="w-1/3 py-4 border-b-4 border-stone-300 dark:border-stone-700 bg-stone-100 text-stone-700 rounded-2xl font-bold text-sm hover:bg-stone-200 transition-all dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700 flex items-center justify-center space-x-1"
-          >
+        <!-- Action Buttons -->
+        <div class="flex gap-3 pt-2">
+          <button id="backToStep1" type="button" class="flex-1 px-4 py-3 bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-bold rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
             <span>BACK</span>
           </button>
-          
-          <button 
-            type="button" 
-            id="submitBtn"
-            class="flex-1 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-amber-100 flex items-center justify-center gap-2 px-4 dark:shadow-none font-sans tracking-widest border-b-4 border-amber-700"
-          >
+          <button id="submitBtn" type="button" class="flex-1 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-700 dark:hover:bg-emerald-800 text-white font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2">
             <span>COMPLETE REGISTRATION</span>
             <i data-lucide="check" class="w-4.5 h-4.5"></i>
           </button>
         </div>
       </div>
 
-      <!-- STEP 3 -->
-      <div id="step3Page" class="step-page text-center space-y-6 hidden py-4">
-        <div class="px-2 pt-0">
-          <h1 class="text-xl font-extrabold text-stone-900 dark:text-white font-sans tracking-tight whitespace-nowrap">
-            Registration Completed!
-          </h1>
-        </div>
-
-        <div class="bg-amber-50/60 text-stone-900 border-2 border-amber-300 rounded-2xl p-5 max-w-sm mx-auto text-left text-sm space-y-3.5 shadow dark:bg-stone-950/70 dark:border-stone-800 dark:text-stone-200">
-          <div class="flex justify-between items-center pb-2.5 border-b border-amber-200 dark:border-stone-800 font-extrabold text-amber-800 font-sans text-base dark:text-amber-400">
-            <span>◆ Registered Information</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider text-xs">Registered Name:</span>
-            <span id="summaryName" class="font-extrabold text-stone-900 text-base font-sans dark:text-white">-</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider text-xs">Email Contact:</span>
-            <span id="summaryEmail" class="font-bold text-stone-800 truncate max-w-[160px] dark:text-stone-200">-</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider text-xs">Settle Method:</span>
-            <span id="summaryMethod" class="font-bold px-2.5 py-0.5 rounded-lg text-xs">-</span>
+      <!-- STEP 3: SUCCESS -->
+      <div id="step3Page" class="step-page space-y-5 hidden text-center">
+        <div class="relative rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/30 border-2 border-emerald-300 dark:border-emerald-800 p-8 shadow-sm overflow-hidden">
+          <div class="relative z-10 space-y-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500 text-white shadow-lg">
+              <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+            </div>
+            <div class="space-y-2">
+              <h2 class="text-2xl font-extrabold text-emerald-900 dark:text-emerald-300">Registration Complete!</h2>
+              <p class="text-sm text-emerald-800 dark:text-emerald-400">Thank you for registering! We're excited to see you at the Asado Party!</p>
+            </div>
           </div>
         </div>
 
-        <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed max-w-sm mx-auto font-sans">
-          We have secured your slot. Bring your best vibes, appetite, and drinks to experience the finest Asado Grill night! See you at Boggiani Flats on June 22.
-        </p>
+        <div class="space-y-3 bg-white dark:bg-stone-900 border border-amber-100 dark:border-stone-800 rounded-xl p-5">
+          <div class="text-left space-y-2">
+            <span class="text-xs font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Name</span>
+            <p id="summaryName" class="text-lg font-bold text-stone-900 dark:text-stone-100"></p>
+          </div>
+          <div class="border-t border-amber-100 dark:border-stone-800 pt-3 text-left space-y-2">
+            <span class="text-xs font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Email</span>
+            <p id="summaryEmail" class="text-base font-bold text-stone-900 dark:text-stone-100"></p>
+          </div>
+          <div class="border-t border-amber-100 dark:border-stone-800 pt-3 text-left space-y-2">
+            <span class="text-xs font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Payment Status</span>
+            <p id="summaryMethod" class="font-bold px-2.5 py-1 rounded-lg text-xs inline-block"></p>
+          </div>
+        </div>
 
-        <button 
-          id="btnRestart"
-          class="w-full py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-amber-100 flex items-center justify-center gap-2 px-4 dark:shadow-none font-sans tracking-widest border-b-4 border-amber-700"
-        >
-          SUBMIT ANOTHER ENTRY
+        <button id="btnRestart" type="button" class="w-full px-4 py-3 bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 text-white font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span>Register Another Person</span>
         </button>
       </div>
-
     </div>
   </main>
 
-  <footer class="py-5 text-center text-xs text-stone-400 dark:text-stone-600 border-t border-amber-100 dark:border-stone-900">
-    <p>&copy; 2026 Boggiani Flats Events Team.</p>
-  </footer>
-
-  <div id="setupModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-3xl p-6 max-w-xs w-full mx-4 shadow-2xl space-y-4 transform scale-95 transition-transform duration-300">
-      <div class="flex justify-between items-start">
-        <div class="flex items-center space-x-2 text-stone-800 dark:text-white">
-          <i data-lucide="settings" class="w-5 h-5 text-amber-500"></i>
-          <h3 class="font-bold text-base font-sans">Google Sheet Setup</h3>
-        </div>
-        <button id="closeModalBtn" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
-          <i data-lucide="x" class="w-5 h-5"></i>
+  <!-- Setup Modal -->
+  <div id="setupModal" class="fixed inset-0 bg-black/30 dark:bg-black/50 z-50 flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-200">
+    <div class="transform scale-95 transition-transform duration-200 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+      <div class="flex justify-between items-center pb-3 border-b border-amber-100 dark:border-stone-800">
+        <h2 class="text-lg font-extrabold text-stone-900 dark:text-stone-100">GAS Configuration</h2>
+        <button id="closeModalBtn" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition">
+          <i data-lucide="x" class="w-5 h-5 text-stone-500"></i>
         </button>
       </div>
-
-      <div class="space-y-3.5 text-sm text-stone-600 dark:text-stone-300">
-        <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
-          Paste the Web App URL from your GAS editor.
-        </p>
-        
-        <div class="space-y-1.5">
-          <label for="gasUrl" class="block text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-            GAS Web App URL
-          </label>
-          <input 
-            type="url" 
-            id="gasUrl" 
-            placeholder="https://script.google.com/macros/s/.../exec" 
-            class="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 dark:bg-stone-950 dark:border-stone-800"
-          />
+      <div class="space-y-3">
+        <div class="flex flex-col gap-2">
+          <label for="gasUrl" class="text-sm font-bold text-stone-700 dark:text-stone-300">GAS Web App URL</label>
+          <input type="text" id="gasUrl" placeholder="https://script.google.com/macros/s/..." class="px-4 py-2.5 rounded-xl border border-amber-200 bg-white text-stone-900 placeholder-stone-400 dark:bg-stone-900 dark:border-stone-700 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-600 text-sm"/>
+          <p class="text-xs text-stone-500 dark:text-stone-400">Enter your Google Apps Script deployment URL</p>
         </div>
       </div>
-
-      <div class="flex space-x-2 pt-1">
-        <button id="saveConfigBtn" class="flex-1 py-2 bg-amber-600 text-white rounded-xl text-xs font-bold hover:bg-amber-500 transition">
-          Save
-        </button>
-        <button id="testConfigBtn" class="py-2 px-3 border border-stone-200 dark:border-stone-800 rounded-xl text-xs text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition">
-          Mock
+      <div class="flex gap-3 pt-2">
+        <button id="testConfigBtn" type="button" class="flex-1 px-4 py-2.5 bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 text-white font-bold rounded-lg text-sm transition-colors">
+          Save Config
         </button>
       </div>
     </div>
   </div>
 
-  <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center space-x-2 px-4 py-3 bg-stone-900 text-white rounded-2xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 text-sm dark:bg-white dark:text-stone-950 font-bold">
-    <span id="toastIcon" class="flex items-center"></span>
-    <span id="toastMessage"></span>
-  </div>
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed bottom-4 left-4 right-4 max-w-sm z-50 pointer-events-none"></div>
 
   <script>
-    function copyToClipboard(text, label) {
-      const el = document.createElement('textarea');
-      el.value = text;
-      el.setAttribute('readonly', '');
-      el.style.position = 'absolute';
-      el.style.left = '-9999px';
-      document.body.appendChild(el);
-      el.select();
+    function showToast(message, type = 'success') {
+      const toastContainer = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `bg-white dark:bg-stone-900 border border-amber-100 dark:border-stone-800 rounded-xl shadow-lg p-4 flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-300 pointer-events-auto`;
       
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          showToast(`${label} copied!`, 'success');
-        } else {
-          showToast('Failed to copy text', 'error');
-        }
-      } catch (err) {
-        showToast('Error copying text', 'error');
-      }
-      document.body.removeChild(el);
-    }
-    window.copyToClipboard = copyToClipboard;
-
-    function showToast(message, type = 'info') {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMessage');
-      const toastIcon = document.getElementById('toastIcon');
-
-      toastMsg.innerText = message;
-      
+      const toastIcon = document.createElement('div');
       if (type === 'success') {
-        toastIcon.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>`;
+        toastIcon.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>`;
       } else if (type === 'error') {
         toastIcon.innerHTML = `<i data-lucide="alert-circle" class="w-4 h-4 text-rose-500"></i>`;
       } else {
         toastIcon.innerHTML = `<i data-lucide="info" class="w-4 h-4 text-amber-500"></i>`;
       }
-      lucide.createIcons();
-
+      
+      const toastMessage = document.createElement('p');
+      toastMessage.className = 'text-sm font-medium text-stone-800 dark:text-stone-200';
+      toastMessage.textContent = message;
+      
+      toast.appendChild(toastIcon);
+      toast.appendChild(toastMessage);
+      toastContainer.appendChild(toast);
+      
+      setTimeout(() => lucide.createIcons(), 0);
       toast.classList.remove('translate-y-20', 'opacity-0');
       toast.classList.add('translate-y-0', 'opacity-100');
 
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-20', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
       }, 4000);
     }
     window.showToast = showToast;
 
     window.onload = function () {
-      // アイコンを確実に生成
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      }
+      lucide.createIcons();
       
       const urlParams = new URLSearchParams(window.location.search);
       const setupBtn = document.getElementById('setupBtn');
@@ -724,21 +573,15 @@
         if (e.target === setupModal) closeModal();
       });
 
-      saveConfigBtn.addEventListener('click', () => {
+      testConfigBtn.addEventListener('click', () => {
         const url = gasUrlInput.value.trim();
         if (url && !url.startsWith('https://script.google.com/')) {
           showToast('Invalid GAS URL format.', 'error');
           return;
         }
-        window.configGasUrl = url;
         localStorage.setItem('gas_web_app_url', url);
-        showToast('Settings saved!', 'success');
-        closeModal();
-      });
-
-      testConfigBtn.addEventListener('click', () => {
-        localStorage.setItem('gas_web_app_url', gasUrlInput.value.trim());
-        showToast('Mock data stored.', 'info');
+        window.configGasUrl = url;
+        showToast('GAS URL saved successfully!', 'success');
         closeModal();
       });
     };
@@ -776,8 +619,7 @@
     const fileName = document.getElementById('fileName');
     const removeImageBtn = document.getElementById('removeImageBtn');
 
-    // 自分のGAS URLをここに貼り付けてください
-    window.configGasUrl = localStorage.getItem('gas_web_app_url') || 'https://script.google.com/macros/s/ここにあなたのGASのID/exec';
+    window.configGasUrl = localStorage.getItem('gas_web_app_url') || '';
 
     step1Form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -903,18 +745,24 @@
         submittedAt: new Date().toISOString()
       };
 
-      if (window.configGasUrl && window.configGasUrl.includes('script.google.com')) {
+      if (window.configGasUrl) {
         try {
-          await fetch(window.configGasUrl, {
+          const response = await fetch(window.configGasUrl, {
             method: 'POST',
-            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
           });
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          const result = await response.json();
+          console.log('Success:', result);
           showSuccessSummary(payload);
         } catch (error) {
-          console.error(error);
-          showToast('Failed to submit. Please check your setup URL.', 'error');
+          console.error('Submit error:', error);
+          showToast('Failed to submit: ' + error.message, 'error');
           submitBtn.disabled = false;
           submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
           lucide.createIcons();
@@ -945,7 +793,7 @@
       step3Page.classList.remove('hidden');
       submitBtn.disabled = false;
       submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
-      if (typeof lucide !== 'undefined') lucide.createIcons();
+      lucide.createIcons();
     }
 
     btnRestart.addEventListener('click', () => {
