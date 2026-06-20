@@ -727,11 +727,8 @@
           showToast('Invalid GAS URL format.', 'error');
           return;
         }
-        window.configGasUrl = url;
-        localStorage.setItem('gas_web_app_url', url);
-        showToast('Settings saved!', 'success');
-        closeModal();
-      });
+// 既存のコードをこのように書き換えます
+        window.configGasUrl = localStorage.getItem('gas_web_app_url') || 'https://script.google.com/macros/s/AKfycbx9EmcUULlK5C4UD-bQfrrcW6pCgU5laaMEm54_cTdrYVe8io7Ge48Yv0IJ4snAJcUmHA/exec';
 
       testConfigBtn.addEventListener('click', () => {
         localStorage.setItem('gas_web_app_url', gasUrlInput.value.trim());
