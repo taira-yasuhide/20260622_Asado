@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asado Party at Boggiani Flats</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSSでクラス名によるダークモード切替を有効化する設定 -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* 障子・明るい格子戸をイメージした和風グリッド */
+    .izakaya-grid-light {
+      background-size: 26px 26px;
+      background-image: linear-gradient(to right, rgba(217, 119, 6, 0.05) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(217, 119, 6, 0.05) 1px, transparent 1px);
+    }
+    /* のれんのスウェー（揺れ）アニメーション */
+    @keyframes noren-swing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(1.5deg); }
+    }
+    .noren-wave {
+      animation: noren-swing 4.5s ease-in-out infinite alternate;
+      transform-origin: top center;
+    }
+    /* 提灯の微小な揺れと光の明滅効果 */
+    @keyframes lantern-glow {
+      0%, 100% { 
+        filter: drop-shadow(0 2px 10px rgba(239, 68, 68, 0.35));
+        transform: rotate(-1.2deg);
+      }
+      50% { 
+        filter: drop-shadow(0 5px 15px rgba(239, 68, 68, 0.6));
+        transform: rotate(1.2deg);
+      }
+    }
+    .lantern-active {
+      animation: lantern-glow 4s ease-in-out infinite alternate;
+      transform-origin: top center;
+    }
+    /* 舞い散るおめでたいお祭りの金箔アニメーション */
+    @keyframes gold-fall {
+      0% {
+        transform: translateY(-10px) rotate(0deg) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 0.9; }
+      90% { opacity: 0.9; }
+      100% {
+        transform: translateY(100vh) rotate(360deg) translateX(40px);
+        opacity: 0;
+      }
+    }
+    .gold-flake {
+      position: absolute;
+      background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 1;
+      animation: gold-fall 9s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-amber-50/30 text-stone-900 min-h-screen flex flex-col justify-between transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100 overflow-x-hidden font-sans">
+
+  <!-- お祭り背景デコレーション -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute inset-0 izakaya-grid-light"></div>
+    <div class="absolute inset-0 opacity-[0.04] dark:opacity-[0.07] bg-[radial-gradient(circle_at_100%_150%,transparent_24%,#d97706_24%,#d97706_28%,transparent_28%,transparent)] bg-[size:40px_40px]"></div>
+    
+    <!-- 花火 SVGパターン -->
+    <div class="absolute top-8 left-2 w-48 h-48 opacity-[0.1] dark:opacity-[0.18]">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" class="text-orange-500 animate-pulse">
+        <circle cx="50" cy="50" r="1" fill="currentColor"/>
+        <g stroke-dasharray="2,2">
+          <line x1="50" y1="50" x2="50" y2="10" stroke-width="0.5"/>
+          <line x1="50" y1="50" x2="50" y2="90" stroke-width="0.5"/>
+          <line x1="50" y1="50" x2="10" y2="50" stroke-width="0.5"/>
+          <line x1="50" y1="50" x2="90" y2="50" stroke-width="0.5"/>
+        </g>
+        <circle cx="50" cy="50" r="25" stroke-width="0.25" stroke-dasharray="1,4"/>
+      </svg>
+    </div>
+
+    <div class="absolute bottom-20 right-2 w-56 h-56 opacity-[0.08] dark:opacity-[0.15]">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" class="text-amber-500">
+        <circle cx="50" cy="50" r="1" fill="currentColor"/>
+        <g stroke-dasharray="1,3">
+          <line x1="50" y1="50" x2="50" y2="2" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="50" y2="98" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="2" y2="50" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="98" y2="50" stroke-width="0.3"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ヘッダー -->
+  <header class="relative w-full max-w-md mx-auto px-4 pt-5 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-2.5">
+      <div class="relative bg-amber-600 border border-amber-400/80 text-white p-1.5 rounded-full shadow-md">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C11 5 8 8 8 11C8 14 10 16 12 16C14 16 16 14 16 11C16 8 13 5 12 2Z" fill="#ffffff"/>
+          <path d="M11 17H13V21H11V17Z" fill="#fcd34d"/>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-extrabold text-sm tracking-widest text-amber-950 dark:text-amber-400 font-sans">
+          BOGGIANI FLATS
+        </span>
+        <span class="text-[9px] tracking-[0.2em] font-bold text-rose-600 dark:text-stone-400 uppercase -mt-0.5">IZAKAYA GRILL</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-2">
+      <button id="setupBtn" class="hidden flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-white/90 border border-amber-200 text-stone-700 hover:bg-amber-50 dark:bg-stone-900/90 dark:border-stone-800 dark:text-stone-300 shadow-sm text-xs font-semibold">
+        <i data-lucide="database" class="w-3.5 h-3.5 text-amber-600"></i>
+        <span>Settings</span>
+      </button>
+
+      <button id="themeToggle" class="p-1.5 rounded-xl bg-white/90 border border-amber-200 text-stone-700 dark:bg-stone-900/90 dark:border-stone-800 dark:text-stone-300 shadow-sm">
+        <i id="themeIcon" data-lucide="moon" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- メインフォームカード -->
+  <main class="relative flex-grow flex items-center justify-center p-3 z-10 w-full max-w-md mx-auto">
+    <div class="w-full bg-white/95 dark:bg-stone-900/95 border border-amber-100 dark:border-stone-800/80 rounded-2xl shadow-xl p-5 md:p-6 space-y-5 transition-all duration-300 relative overflow-hidden">
+      
+      <div class="absolute top-0 bottom-0 left-0 w-1 bg-amber-500/30"></div>
+      <div class="absolute top-0 bottom-0 right-0 w-1 bg-amber-500/30"></div>
+
+      <!-- 進捗バー -->
+      <div class="flex items-center justify-between px-1 pb-1.5 border-b border-amber-100 dark:border-stone-800/60">
+        <div class="flex flex-col items-center">
+          <div id="step1Dot" class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold ring-4 ring-amber-100 dark:ring-amber-950/40 transition-all duration-300">壱</div>
+          <span class="text-xs font-extrabold mt-1 text-amber-900 dark:text-stone-400">Register</span>
+        </div>
+        <div class="flex-grow h-[2px] bg-amber-100 dark:bg-stone-800 mx-2 -mt-4">
+          <div id="progressLine1" class="h-full bg-amber-500 w-0 transition-all duration-300"></div>
+        </div>
+        <div class="flex flex-col items-center">
+          <div id="step2Dot" class="w-9 h-9 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-sm font-bold transition-all duration-300 dark:bg-stone-800 dark:text-stone-600">弐</div>
+          <span class="text-xs font-extrabold mt-1 text-stone-400 dark:text-stone-500">Payment</span>
+        </div>
+        <div class="flex-grow h-[2px] bg-stone-200 dark:bg-stone-800 mx-2 -mt-4">
+          <div id="progressLine2" class="h-full bg-amber-500 w-0 transition-all duration-300"></div>
+        </div>
+        <div class="flex flex-col items-center">
+          <div id="step3Dot" class="w-9 h-9 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-sm font-bold transition-all duration-300 dark:bg-stone-800 dark:text-stone-600">参</div>
+          <span class="text-xs font-extrabold mt-1 text-stone-400 dark:text-stone-500">Success</span>
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="step1Page" class="step-page space-y-5 block">
+        
+        <div class="relative w-full rounded-2xl bg-amber-50/70 p-4 flex flex-col justify-between min-h-[220px] shadow-sm overflow-hidden border border-amber-200/60 dark:bg-[#0d1424] dark:border-stone-800/80">
+          <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:14px_14px]"></div>
+          
+          <div class="absolute top-0 left-0 right-0 flex justify-center z-20 noren-wave">
+            <svg class="w-11/12 h-12" viewBox="0 0 340 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0 H110 V42 C110 45 107 48 104 48 H16 C13 48 10 45 10 42 Z" fill="#1e40af" stroke="#f59e0b" stroke-width="1.5"/>
+              <path d="M120 0 H220 V42 C220 45 217 48 214 48 H126 C123 48 120 45 120 42 Z" fill="#1e40af" stroke="#f59e0b" stroke-width="1.5"/>
+              <path d="M230 0 H330 V42 C330 45 327 48 324 48 H236 C233 48 230 45 230 42 Z" fill="#1e40af" stroke="#f59e0b" stroke-width="1.5"/>
+              
+              <text x="60" y="28" fill="#fef08a" font-family="'Plus Jakarta Sans', sans-serif" font-weight="bold" font-size="14" text-anchor="middle">阿</text>
+              <text x="170" y="28" fill="#fef08a" font-family="'Plus Jakarta Sans', sans-serif" font-weight="bold" font-size="14" text-anchor="middle">佐</text>
+              <text x="280" y="28" fill="#fef08a" font-family="'Plus Jakarta Sans', sans-serif" font-weight="bold" font-size="14" text-anchor="middle">土</text>
+            </svg>
+          </div>
+
+          <div class="absolute -top-1 left-3 z-30 lantern-active">
+            <svg class="w-9 h-14" viewBox="0 0 50 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M25 2 L25 10" stroke="#451a03" stroke-width="2"/>
+              <rect x="15" y="10" width="20" height="4" rx="1" fill="#451a03"/>
+              <ellipse cx="25" cy="40" rx="18" ry="24" fill="#ea580c" stroke="#9a3412" stroke-width="1"/>
+              <path d="M8 28 Q25 32 42 28 M7 40 Q25 44 43 40 M8 52 Q25 56 42 52" stroke="#9a3412" stroke-width="1"/>
+              <rect x="15" y="64" width="20" height="4" rx="1" fill="#451a03"/>
+              <path d="M25 68 L25 78" stroke="#ea580c" stroke-width="3"/>
+              <text x="25" y="47" fill="#fff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="18" text-anchor="middle">酒</text>
+            </svg>
+          </div>
+
+          <div class="absolute -top-1 right-3 z-30 lantern-active" style="animation-delay: -2s;">
+            <svg class="w-9 h-14" viewBox="0 0 50 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M25 2 L25 10" stroke="#451a03" stroke-width="2"/>
+              <rect x="15" y="10" width="20" height="4" rx="1" fill="#451a03"/>
+              <ellipse cx="25" cy="40" rx="18" ry="24" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+              <path d="M8 28 Q25 32 42 28 M7 40 Q25 44 43 40 M8 52 Q25 56 42 52" stroke="#b45309" stroke-width="1"/>
+              <rect x="15" y="64" width="20" height="4" rx="1" fill="#451a03"/>
+              <path d="M25 68 L25 78" fill="#f59e0b" stroke-width="3"/>
+              <text x="25" y="47" fill="#451a03" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="16" text-anchor="middle">肉</text>
+            </svg>
+          </div>
+
+          <div class="relative z-10 mt-12 text-center space-y-1.5">
+            <span class="text-xs uppercase tracking-[0.25em] text-amber-700 dark:text-amber-400 font-extrabold block">Hosted by Japanese</span>
+            <h1 class="text-2xl font-extrabold tracking-wider text-stone-900 dark:text-stone-100 font-sans">
+              Asado Party at Boggiani
+            </h1>
+            <p class="text-base text-orange-600 dark:text-rose-400 font-black tracking-[0.2em] font-sans uppercase py-1">
+              - 宴 / UTAGE -
+            </p>
+          </div>
+
+          <div class="relative z-10 mx-auto max-w-sm mt-3 p-4 bg-white/70 dark:bg-stone-950/70 border border-amber-200/60 dark:border-stone-800/80 rounded-xl text-center space-y-3 shadow-sm text-sm leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
+            <p>
+              Please note that at this event, we are highly likely to serve grilling in a <strong class="text-amber-900 dark:text-amber-300 font-bold">Japanese Style</strong> instead of the standard Paraguayan Asado!
+            </p>
+            <p>
+              We will be serving Japanese-style <strong class="text-rose-700 dark:text-rose-400 font-semibold">Asadito</strong> (skewered highlights), along with other delicious side dishes commonly found in traditional Japanese Izakayas.
+            </p>
+            <p>
+              Either way, there will be tons of amazing meat to eat! lol 🍖✨
+            </p>
+            <p class="font-extrabold text-orange-600 dark:text-amber-400 border-t border-amber-200/40 dark:border-stone-800/40 pt-2 text-xs md:text-sm">
+              📍 Drinks check: There is a <span class="underline decoration-amber-500">Bodega</span> right next door, and a <span class="underline decoration-amber-500">Biggie</span> just a 5-minute walk away! Perfect for your BYOB restocking! 🍻
+            </p>
+          </div>
+
+          <div class="relative z-10 mt-4 pt-2.5 border-t border-amber-200 dark:border-stone-800/80 space-y-3">
+            <div class="flex justify-between items-start text-left">
+              <div>
+                <span class="text-[11px] text-stone-500 dark:text-stone-400 font-mono tracking-wider block">DATE & TIME</span>
+                <span class="text-base font-extrabold text-stone-800 dark:text-stone-200">June 22, 2026 / 19:00 ~ Late</span>
+              </div>
+              <div class="flex items-center space-x-1.5 pt-1">
+                <svg class="w-4 h-6 text-amber-600/80" viewBox="0 0 24 32" fill="currentColor">
+                  <path d="M12 2C10 2 9 4 9 6C9 8 10 9 8 12C6 15 5 19 5 24C5 28 8 30 12 30C16 30 19 28 19 24C19 19 18 15 16 12C14 9 15 8 15 6C15 4 14 2 12 2Z"/>
+                </svg>
+                <svg class="w-3.5 h-3.5 text-amber-600/80" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2 4C2 4 4 16 10 16C16 16 18 4 18 4H2Z"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center text-left pt-2.5 border-t border-amber-200/40 dark:border-stone-800/40">
+              <div>
+                <span class="text-[11px] text-stone-500 dark:text-stone-400 font-mono tracking-wider block">LOCATION</span>
+                <span class="text-base font-extrabold text-stone-800 dark:text-stone-200 flex items-center gap-1">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-rose-600 dark:text-rose-400"></i>
+                  Boggiani Flats
+                </span>
+              </div>
+              <a 
+                href="https://maps.app.goo.gl/SwNe1hobFYwBRkEJ7" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center gap-1 px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white dark:bg-rose-700 dark:hover:bg-rose-800 text-xs font-bold rounded-xl shadow-sm transition-all"
+              >
+                <i data-lucide="navigation" class="w-3.5 h-3.5"></i>
+                <span>View Map</span>
+              </a>
+            </div>
+
+            <!-- Participation Fee Section -->
+            <div class="flex justify-between items-center text-left pt-2.5 border-t border-amber-200/40 dark:border-stone-800/40">
+              <div>
+                <span class="text-[11px] text-stone-500 dark:text-stone-400 font-mono tracking-wider block">PARTICIPATION FEE</span>
+                <span class="text-base font-extrabold text-rose-700 dark:text-rose-400 flex items-center gap-1">
+                  <i data-lucide="wallet" class="w-4 h-4"></i>
+                  120.000 Gs
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🏮 居酒屋風お品書きボード -->
+        <div class="relative rounded-2xl bg-amber-50/40 border-2 border-amber-300 p-4 shadow-sm overflow-hidden dark:bg-stone-950/80 dark:border-stone-800">
+          <div class="absolute top-0 inset-x-0 h-1 bg-[repeating-linear-gradient(45deg,#d97706,#d97706_10px,#fef3c7_10px,#fef3c7_20px)]"></div>
+          
+          <h3 class="text-sm font-extrabold text-amber-800 uppercase tracking-widest mb-3.5 flex items-center gap-1.5 font-sans dark:text-amber-400">
+            <span class="text-orange-600">◆</span> Daily Specials & House Rules <span class="text-orange-600">◆</span>
+          </h3>
+          
+          <div class="grid grid-cols-1 gap-3">
+            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-amber-500 text-white font-sans font-bold flex items-center justify-center text-base shadow">
+                食
+              </span>
+              <div class="text-sm space-y-1">
+                <span class="font-bold text-amber-900 tracking-wide font-sans block dark:text-amber-400">Foods Are Provided</span>
+                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
+                  We will prepare the food, but feel free to bring anything else you would like to eat or grill!
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-rose-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">
+                酒
+              </span>
+              <div class="text-sm space-y-1">
+                <span class="font-bold text-rose-800 tracking-wide font-sans block dark:text-rose-400">BYOB (Bring Your Own Drinks)</span>
+                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
+                  Please bring your favorite beverages (beers, sake, wine, or refreshing soft drinks) to guarantee your perfect match for the evening!
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-stone-700 text-amber-200 font-sans font-bold flex items-center justify-center text-base shadow">
+                雨
+              </span>
+              <div class="text-sm space-y-1">
+                <span class="font-bold text-stone-800 tracking-wide font-sans block dark:text-stone-300">Rain or Shine Event</span>
+                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
+                  Come weather-ready. The cozy flats have excellent indoor and sheltered areas, so the party will proceed flawlessly!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="step1Form" class="space-y-4">
+          <div class="space-y-1.5">
+            <label for="name" class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
+              Your Name <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-stone-400 pointer-events-none">
+                <i data-lucide="user" class="w-4.5 h-4.5"></i>
+              </span>
+              <input 
+                type="text" 
+                id="name" 
+                required 
+                placeholder="e.g. Kenji Tanaka / Yasuhide Taira" 
+                class="w-full pl-12 pr-4 py-3 bg-white border-2 border-stone-200 rounded-2xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all dark:bg-stone-950 dark:border-stone-800 dark:focus:ring-amber-400"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="email" class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
+              Email Address <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-stone-400 pointer-events-none">
+                <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+              </span>
+              <input 
+                type="email" 
+                id="email" 
+                required 
+                placeholder="yasuhide.taira@example.com" 
+                class="w-full pl-12 pr-4 py-3 bg-white border-2 border-stone-200 rounded-2xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all dark:bg-stone-950 dark:border-stone-800 dark:focus:ring-amber-400"
+              />
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full py-4 mt-2 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold text-base transition-all shadow-lg shadow-amber-100 dark:shadow-none flex items-center justify-center space-x-2 font-sans tracking-widest border-b-4 border-amber-700"
+          >
+            <span>PROCEED TO PAYMENT</span>
+            <i data-lucide="arrow-right" class="w-4.5 h-4.5"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2Page" class="step-page space-y-5 hidden">
+        <div class="space-y-1.5 text-center">
+          <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-white font-sans">
+            Attendance Settle Support
+          </h2>
+          <p class="text-sm text-stone-500 dark:text-stone-400">
+            Please make your transfer or select the day-of payment option.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-amber-50/60 border-2 border-amber-300 space-y-3.5 text-sm text-stone-800 dark:bg-stone-950/70 dark:text-stone-200">
+          <div class="flex items-center gap-2 font-bold text-amber-900 dark:text-amber-400 mb-1 border-b border-amber-300 pb-2 font-sans">
+            <i data-lucide="wallet" class="w-4.5 h-4.5 text-orange-600"></i>
+            <span>Bank Transfer Details</span>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-y-3 items-center">
+            <span class="text-stone-500 dark:text-stone-400 font-medium">Bank Name:</span>
+            <span class="col-span-2 font-extrabold text-stone-900 dark:text-white text-sm uppercase">ueno bank</span>
+            
+            <span class="text-stone-500 dark:text-stone-400 font-medium">Account Name:</span>
+            <span class="col-span-2 font-bold text-stone-900 dark:text-stone-100 font-sans">Yasuhide Taira</span>
+
+            <span class="text-stone-500 dark:text-stone-400 font-medium">CI:</span>
+            <div class="col-span-2 flex items-center gap-2">
+              <span class="font-mono font-bold select-all text-amber-900 dark:text-amber-300">9312214</span>
+              <button type="button" onclick="copyToClipboard('9312214', 'CI')" class="p-1 rounded-lg hover:bg-amber-100 dark:hover:bg-stone-800 text-stone-400 hover:text-amber-700 transition" title="Copy CI">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            
+            <span class="text-stone-500 dark:text-stone-400 font-medium">Account No:</span>
+            <div class="col-span-2 flex items-center gap-2">
+              <span class="font-mono font-bold select-all bg-white dark:bg-stone-900 px-2 py-1 rounded border border-amber-300/60 text-amber-900 dark:text-amber-300 shadow-sm">
+                6192178180
+              </span>
+              <button type="button" onclick="copyToClipboard('6192178180', 'Account Number')" class="p-1 rounded-lg hover:bg-amber-100 dark:hover:bg-stone-800 text-stone-400 hover:text-amber-700 transition" title="Copy Account Number">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+            <span class="text-stone-600 dark:text-stone-400 font-extrabold font-sans border-t border-amber-200 dark:border-stone-800 pt-2.5">Participation Fee:</span>
+            <span class="col-span-2 font-extrabold text-rose-600 dark:text-rose-400 font-sans text-base border-t border-amber-200 dark:border-stone-800 pt-2.5">
+              120.000 Gs
+            </span>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
+            Select Payment Method
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex flex-col items-center justify-between p-4 rounded-2xl border-2 border-amber-500 bg-amber-500/5 cursor-pointer hover:border-amber-600 transition-all dark:bg-amber-950/20" id="methodBankLabel">
+              <input type="radio" name="paymentMethod" id="methodBank" value="bank" checked class="sr-only">
+              <i data-lucide="receipt" class="w-6.5 h-6.5 text-amber-700 mb-1.5 dark:text-amber-400"></i>
+              <span class="text-sm font-bold text-stone-800 dark:text-stone-200 font-sans">Bank Transfer</span>
+            </label>
+
+            <label class="flex flex-col items-center justify-between p-4 rounded-2xl border-2 border-stone-200 cursor-pointer hover:border-amber-500 transition-all dark:border-stone-800" id="methodCashLabel">
+              <input type="radio" name="paymentMethod" id="methodCash" value="cash" class="sr-only">
+              <i data-lucide="banknote" class="w-6.5 h-6.5 text-stone-400 mb-1.5"></i>
+              <span class="text-sm font-bold text-stone-800 dark:text-stone-200 font-sans">Pay Cash on Day</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="uploadContainer" class="space-y-2">
+          <label class="block text-sm font-bold uppercase tracking-widest text-stone-600 dark:text-stone-400 font-sans">
+            Upload Payment Certificate <span class="text-rose-500">*</span>
+          </label>
+          
+          <div 
+            id="dropzone" 
+            class="relative border-2 border-dashed border-amber-300 rounded-2xl p-5 text-center cursor-pointer hover:border-amber-500 hover:bg-amber-500/5 transition-all dark:border-stone-800 dark:hover:border-amber-500"
+          >
+            <input 
+              type="file" 
+              id="certificate" 
+              accept="image/*" 
+              class="hidden"
+            />
+            
+            <div id="dropzonePrompt" class="space-y-2">
+              <div class="mx-auto w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-500 dark:bg-stone-950">
+                <i data-lucide="cloud-upload" class="w-5 h-5"></i>
+              </div>
+              <p class="text-sm text-stone-600 dark:text-stone-400">
+                Drag & drop receipt or <span class="text-amber-600 font-bold">browse folder</span>
+              </p>
+              <p class="text-xs text-stone-400 dark:text-stone-500">
+                Receipt / Screenshot image (JPEG, PNG, WebP)
+              </p>
+            </div>
+
+            <div id="previewContainer" class="hidden space-y-3">
+              <div class="relative inline-block mx-auto max-w-full">
+                <img id="imagePreview" src="" alt="Payment Certificate" class="max-h-36 rounded-xl object-contain mx-auto border border-stone-200 dark:border-stone-800" />
+                <button 
+                  type="button" 
+                  id="removeImageBtn" 
+                  class="absolute -top-2 -right-2 p-1.5 bg-rose-600 text-white rounded-full hover:bg-rose-700 transition shadow-md"
+                >
+                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <p id="fileName" class="text-sm font-medium text-stone-600 truncate max-w-xs mx-auto dark:text-stone-300"></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="cashPrompt" class="hidden p-4 rounded-2xl bg-amber-50/30 border border-amber-200 text-center space-y-2 dark:bg-stone-950/40 dark:border-stone-800">
+          <div class="flex items-center justify-center text-amber-600 dark:text-amber-500">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <p class="text-sm font-bold text-stone-800 dark:text-stone-200 font-sans">
+            Cash Option Selected
+          </p>
+          <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+            No transfer file upload is required. Please tap "Complete Registration" below to confirm, and settle 120.000 Gs in cash with the organizer on the event day.
+          </p>
+        </div>
+
+        <div class="flex space-x-3 pt-2">
+          <button 
+            type="button" 
+            id="backToStep1"
+            class="w-1/3 py-4 border-b-4 border-stone-300 dark:border-stone-700 bg-stone-100 text-stone-700 rounded-2xl font-bold text-sm hover:bg-stone-200 transition-all dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700 flex items-center justify-center space-x-1"
+          >
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>BACK</span>
+          </button>
+          
+          <button 
+            type="button" 
+            id="submitBtn"
+            class="flex-1 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-amber-100 flex items-center justify-center gap-2 px-4 dark:shadow-none font-sans tracking-widest border-b-4 border-amber-700"
+          >
+            <span>COMPLETE REGISTRATION</span>
+            <i data-lucide="check" class="w-4.5 h-4.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="step3Page" class="step-page text-center space-y-6 hidden py-4">
+        <div class="px-2 pt-0">
+          <h1 class="text-xl font-extrabold text-stone-900 dark:text-white font-sans tracking-tight whitespace-nowrap">
+            Registration Completed!
+          </h1>
+        </div>
+
+        <div class="bg-amber-50/60 text-stone-900 border-2 border-amber-300 rounded-2xl p-5 max-w-sm mx-auto text-left text-sm space-y-3.5 shadow dark:bg-stone-950/70 dark:border-stone-800 dark:text-stone-200">
+          <div class="flex justify-between items-center pb-2.5 border-b border-amber-200 dark:border-stone-800 font-extrabold text-amber-800 font-sans text-base dark:text-amber-400">
+            <span>◆ Registered Information</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider text-xs">Registered Name:</span>
+            <span id="summaryName" class="font-extrabold text-stone-900 text-base font-sans dark:text-white">-</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider text-xs">Email Contact:</span>
+            <span id="summaryEmail" class="font-bold text-stone-800 truncate max-w-[160px] dark:text-stone-200">-</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider text-xs">Settle Method:</span>
+            <span id="summaryMethod" class="font-bold px-2.5 py-0.5 rounded-lg text-xs">-</span>
+          </div>
+        </div>
+
+        <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed max-w-sm mx-auto font-sans">
+          We have secured your slot. Bring your best vibes, appetite, and drinks to experience the finest Asado Grill night! See you at Boggiani Flats on June 22.
+        </p>
+
+        <button 
+          id="btnRestart"
+          class="w-full py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-amber-100 flex items-center justify-center gap-2 px-4 dark:shadow-none font-sans tracking-widest border-b-4 border-amber-700"
+        >
+          SUBMIT ANOTHER ENTRY
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="py-5 text-center text-xs text-stone-400 dark:text-stone-600 border-t border-amber-100 dark:border-stone-900">
+    <p>&copy; 2026 Boggiani Flats Events Team.</p>
+  </footer>
+
+  <div id="setupModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-3xl p-6 max-w-xs w-full mx-4 shadow-2xl space-y-4 transform scale-95 transition-transform duration-300">
+      <div class="flex justify-between items-start">
+        <div class="flex items-center space-x-2 text-stone-800 dark:text-white">
+          <i data-lucide="settings" class="w-5 h-5 text-amber-500"></i>
+          <h3 class="font-bold text-base font-sans">Google Sheet Setup</h3>
+        </div>
+        <button id="closeModalBtn" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3.5 text-sm text-stone-600 dark:text-stone-300">
+        <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+          Paste the Web App URL from your GAS editor.
+        </p>
+        
+        <div class="space-y-1.5">
+          <label for="gasUrl" class="block text-[11px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+            GAS Web App URL
+          </label>
+          <input 
+            type="url" 
+            id="gasUrl" 
+            placeholder="https://script.google.com/macros/s/.../exec" 
+            class="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-amber-500 dark:bg-stone-950 dark:border-stone-800"
+          />
+        </div>
+      </div>
+
+      <div class="flex space-x-2 pt-1">
+        <button id="saveConfigBtn" class="flex-1 py-2 bg-amber-600 text-white rounded-xl text-xs font-bold hover:bg-amber-500 transition">
+          Save
+        </button>
+        <button id="testConfigBtn" class="py-2 px-3 border border-stone-200 dark:border-stone-800 rounded-xl text-xs text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition">
+          Mock
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center space-x-2 px-4 py-3 bg-stone-900 text-white rounded-2xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 text-sm dark:bg-white dark:text-stone-950 font-bold">
+    <span id="toastIcon" class="flex items-center"></span>
+    <span id="toastMessage"></span>
+  </div>
+
+  <script>
+    function copyToClipboard(text, label) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showToast(`${label} copied!`, 'success');
+        } else {
+          showToast('Failed to copy text', 'error');
+        }
+      } catch (err) {
+        showToast('Error copying text', 'error');
+      }
+      document.body.removeChild(el);
+    }
+    window.copyToClipboard = copyToClipboard;
+
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.innerText = message;
+      
+      if (type === 'success') {
+        toastIcon.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>`;
+      } else if (type === 'error') {
+        toastIcon.innerHTML = `<i data-lucide="alert-circle" class="w-4 h-4 text-rose-500"></i>`;
+      } else {
+        toastIcon.innerHTML = `<i data-lucide="info" class="w-4 h-4 text-amber-500"></i>`;
+      }
+      lucide.createIcons();
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 4000);
+    }
+    window.showToast = showToast;
+
+    window.onload = function () {
+      lucide.createIcons();
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const setupBtn = document.getElementById('setupBtn');
+      if (urlParams.get('admin') === 'true') {
+        setupBtn.classList.remove('hidden');
+      } else {
+        setupBtn.classList.add('hidden');
+      }
+
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.classList.remove('dark');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+
+      themeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.theme = 'light';
+          themeIcon.setAttribute('data-lucide', 'moon');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.theme = 'dark';
+          themeIcon.setAttribute('data-lucide', 'sun');
+        }
+        lucide.createIcons();
+      });
+
+      const setupModal = document.getElementById('setupModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const saveConfigBtn = document.getElementById('saveConfigBtn');
+      const testConfigBtn = document.getElementById('testConfigBtn');
+      const gasUrlInput = document.getElementById('gasUrl');
+
+      setupBtn.addEventListener('click', () => {
+        setupModal.classList.remove('pointer-events-none', 'opacity-0');
+        setupModal.querySelector('.transform').classList.remove('scale-95');
+        setupModal.querySelector('.transform').classList.add('scale-100');
+      });
+
+      function closeModal() {
+        setupModal.classList.add('pointer-events-none', 'opacity-0');
+        setupModal.querySelector('.transform').classList.remove('scale-100');
+        setupModal.querySelector('.transform').classList.add('scale-95');
+      }
+
+      closeModalBtn.addEventListener('click', closeModal);
+      setupModal.addEventListener('click', (e) => {
+        if (e.target === setupModal) closeModal();
+      });
+
+      saveConfigBtn.addEventListener('click', () => {
+        const url = gasUrlInput.value.trim();
+        if (url && !url.startsWith('https://script.google.com/')) {
+          showToast('Invalid GAS URL format.', 'error');
+          return;
+        }
+        window.configGasUrl = url;
+        localStorage.setItem('gas_web_app_url', url);
+        showToast('Settings saved!', 'success');
+        closeModal();
+      });
+
+      testConfigBtn.addEventListener('click', () => {
+        localStorage.setItem('gas_web_app_url', gasUrlInput.value.trim());
+        showToast('Mock data stored.', 'info');
+        closeModal();
+      });
+    };
+
+    const step1Page = document.getElementById('step1Page');
+    const step2Page = document.getElementById('step2Page');
+    const step3Page = document.getElementById('step3Page');
+    const step1Form = document.getElementById('step1Form');
+    const backToStep1 = document.getElementById('backToStep1');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnRestart = document.getElementById('btnRestart');
+
+    const step1Dot = document.getElementById('step1Dot');
+    const step2Dot = document.getElementById('step2Dot');
+    const step3Dot = document.getElementById('step3Dot');
+    const progressLine1 = document.getElementById('progressLine1');
+    const progressLine2 = document.getElementById('progressLine2');
+
+    const summaryName = document.getElementById('summaryName');
+    const summaryEmail = document.getElementById('summaryEmail');
+    const summaryMethod = document.getElementById('summaryMethod');
+
+    const methodBank = document.getElementById('methodBank');
+    const methodCash = document.getElementById('methodCash');
+    const methodBankLabel = document.getElementById('methodBankLabel');
+    const methodCashLabel = document.getElementById('methodCashLabel');
+    const uploadContainer = document.getElementById('uploadContainer');
+    const cashPrompt = document.getElementById('cashPrompt');
+
+    const dropzone = document.getElementById('dropzone');
+    const certificateInput = document.getElementById('certificate');
+    const dropzonePrompt = document.getElementById('dropzonePrompt');
+    const previewContainer = document.getElementById('previewContainer');
+    const imagePreview = document.getElementById('imagePreview');
+    const fileName = document.getElementById('fileName');
+    const removeImageBtn = document.getElementById('removeImageBtn');
+
+    window.configGasUrl = localStorage.getItem('gas_web_app_url') || '';
+
+    step1Form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      progressLine1.classList.remove('w-0');
+      progressLine1.classList.add('w-full');
+      step2Dot.classList.remove('bg-stone-200', 'text-stone-500', 'dark:bg-stone-800', 'dark:text-stone-600');
+      step2Dot.classList.add('bg-amber-600', 'text-white', 'ring-4', 'ring-amber-100', 'dark:ring-amber-950/40');
+      step1Page.classList.add('hidden');
+      step2Page.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    backToStep1.addEventListener('click', () => {
+      progressLine1.classList.remove('w-full');
+      progressLine1.classList.add('w-0');
+      step2Dot.classList.add('bg-stone-200', 'text-stone-500', 'dark:bg-stone-800', 'dark:text-stone-600');
+      step2Dot.classList.remove('bg-amber-600', 'text-white', 'ring-4', 'ring-amber-100', 'dark:ring-amber-950/40');
+      step2Page.classList.add('hidden');
+      step1Page.classList.remove('hidden');
+    });
+
+    function updateMethodsUI() {
+      if (methodBank.checked) {
+        methodBankLabel.classList.add('border-amber-500', 'bg-amber-500/5');
+        methodBankLabel.classList.remove('border-stone-200', 'dark:border-stone-800');
+        methodCashLabel.classList.remove('border-amber-500', 'bg-amber-500/5');
+        methodCashLabel.classList.add('border-stone-200', 'dark:border-stone-800');
+        uploadContainer.classList.remove('hidden');
+        cashPrompt.classList.add('hidden');
+      } else {
+        methodCashLabel.classList.add('border-amber-500', 'bg-amber-500/5');
+        methodCashLabel.classList.remove('border-stone-200', 'dark:border-stone-800');
+        methodBankLabel.classList.remove('border-amber-500', 'bg-amber-500/5');
+        methodBankLabel.classList.add('border-stone-200', 'dark:border-stone-800');
+        uploadContainer.classList.add('hidden');
+        cashPrompt.classList.remove('hidden');
+      }
+    }
+
+    methodBank.addEventListener('change', updateMethodsUI);
+    methodCash.addEventListener('change', updateMethodsUI);
+
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#removeImageBtn')) {
+        certificateInput.click();
+      }
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropzone.classList.add('border-amber-500', 'bg-amber-500/5');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('border-amber-500', 'bg-amber-500/5');
+      }, false);
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (dt.files.length > 0) handleImageFile(dt.files[0]);
+    });
+
+    certificateInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) handleImageFile(e.target.files[0]);
+    });
+
+    let base64File = null;
+
+    function handleImageFile(file) {
+      if (!file.type.startsWith('image/')) {
+        showToast('Please upload an image file.', 'error');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('File must not exceed 5MB.', 'error');
+        return;
+      }
+      fileName.innerText = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imagePreview.src = e.target.result;
+        base64File = e.target.result;
+        dropzonePrompt.classList.add('hidden');
+        previewContainer.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    removeImageBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      certificateInput.value = '';
+      base64File = null;
+      imagePreview.src = '';
+      previewContainer.classList.add('hidden');
+      dropzonePrompt.classList.remove('hidden');
+    });
+
+    submitBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (methodBank.checked && !base64File) {
+        showToast('Please upload your payment certificate image.', 'error');
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Sending Receipt...</span>
+      `;
+
+      const payload = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        paymentMethod: methodBank.checked ? 'bank' : 'cash',
+        certificate: methodBank.checked ? base64File : null,
+        submittedAt: new Date().toISOString()
+      };
+
+      if (window.configGasUrl) {
+        try {
+          await fetch(window.configGasUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          showSuccessSummary(payload);
+        } catch (error) {
+          console.error(error);
+          showToast('Failed to submit. Please check your setup URL.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
+          lucide.createIcons();
+        }
+      } else {
+        setTimeout(() => {
+          showToast('Submitted as Local Demo. Setup GAS URL for Google Sheet recording!', 'info');
+          showSuccessSummary(payload);
+        }, 1200);
+      }
+    });
+
+    function showSuccessSummary(payload) {
+      summaryName.innerText = payload.name;
+      summaryEmail.innerText = payload.email;
+      if (payload.paymentMethod === 'bank') {
+        summaryMethod.innerText = 'Paid via Bank Transfer';
+        summaryMethod.className = 'font-bold px-2.5 py-1 rounded-lg text-xs bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400';
+      } else {
+        summaryMethod.innerText = 'Paying Cash on Day';
+        summaryMethod.className = 'font-bold px-2.5 py-1 rounded-lg text-xs bg-amber-500 text-stone-950';
+      }
+      progressLine2.classList.remove('w-0');
+      progressLine2.classList.add('w-full');
+      step3Dot.classList.remove('bg-stone-200', 'text-stone-500', 'dark:bg-stone-800', 'dark:text-stone-600');
+      step3Dot.classList.add('bg-emerald-600', 'text-white', 'ring-4', 'ring-emerald-100', 'dark:ring-emerald-950/40');
+      step2Page.classList.add('hidden');
+      step3Page.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
+      lucide.createIcons();
+    }
+
+    btnRestart.addEventListener('click', () => {
+      step1Form.reset();
+      removeImageBtn.click();
+      methodBank.checked = true;
+      updateMethodsUI();
+      progressLine1.className = 'h-full bg-amber-500 w-0 transition-all duration-300';
+      progressLine2.className = 'h-full bg-amber-500 w-0 transition-all duration-300';
+      step2Dot.className = 'w-9 h-9 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-sm font-bold transition-all duration-300 dark:bg-stone-800 dark:text-stone-600';
+      step3Dot.className = 'w-9 h-9 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-sm font-bold transition-all duration-300 dark:bg-stone-800 dark:text-stone-600';
+      step3Page.classList.add('hidden');
+      step1Page.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
