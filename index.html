@@ -663,7 +663,10 @@
     window.showToast = showToast;
 
     window.onload = function () {
-      lucide.createIcons();
+      // アイコンを確実に生成
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
       
       const urlParams = new URLSearchParams(window.location.search);
       const setupBtn = document.getElementById('setupBtn');
@@ -727,8 +730,11 @@
           showToast('Invalid GAS URL format.', 'error');
           return;
         }
-// 既存のコードをこのように書き換えます
-        window.configGasUrl = localStorage.getItem('gas_web_app_url') || 'https://script.google.com/macros/s/AKfycbx9EmcUULlK5C4UD-bQfrrcW6pCgU5laaMEm54_cTdrYVe8io7Ge48Yv0IJ4snAJcUmHA/exec';
+        window.configGasUrl = url;
+        localStorage.setItem('gas_web_app_url', url);
+        showToast('Settings saved!', 'success');
+        closeModal();
+      });
 
       testConfigBtn.addEventListener('click', () => {
         localStorage.setItem('gas_web_app_url', gasUrlInput.value.trim());
@@ -770,7 +776,8 @@
     const fileName = document.getElementById('fileName');
     const removeImageBtn = document.getElementById('removeImageBtn');
 
-    window.configGasUrl = localStorage.getItem('gas_web_app_url') || '';
+    // 自分のGAS URLをここに貼り付けてください
+    window.configGasUrl = localStorage.getItem('gas_web_app_url') || 'https://script.google.com/macros/s/ここにあなたのGASのID/exec';
 
     step1Form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -896,7 +903,7 @@
         submittedAt: new Date().toISOString()
       };
 
-      if (window.configGasUrl) {
+      if (window.configGasUrl && window.configGasUrl.includes('script.google.com')) {
         try {
           await fetch(window.configGasUrl, {
             method: 'POST',
@@ -938,7 +945,7 @@
       step3Page.classList.remove('hidden');
       submitBtn.disabled = false;
       submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
-      lucide.createIcons();
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
     btnRestart.addEventListener('click', () => {
