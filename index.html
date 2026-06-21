@@ -420,6 +420,35 @@
     window.configGasUrl = GAS_URL;
     console.log('✅ GAS URL loaded:', GAS_URL);
 
+    // ================== 画像圧縮関数 ==================
+    async function compressImage(base64Data, quality = 0.6, maxWidth = 800) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          
+          // リサイズ計算
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          const compressed = canvas.toDataURL('image/jpeg', quality);
+          console.log(`📦 Compressed from ${Math.round(base64Data.length / 1024)}KB to ${Math.round(compressed.length / 1024)}KB`);
+          resolve(compressed);
+        };
+        img.onerror = () => reject(new Error('Image compression failed'));
+        img.src = base64Data;
+      });
+    }
+
     function showToast(message, type = 'success') {
       const toastContainer = document.getElementById('toastContainer');
       const toast = document.createElement('div');
@@ -632,11 +661,28 @@
         <span>Sending Receipt...</span>
       `;
 
+      // 画像を圧縮
+      let compressedImage = null;
+      if (methodBank.checked && base64File) {
+        try {
+          console.log('📦 Compressing image...');
+          compressedImage = await compressImage(base64File, 0.6);
+          console.log('✅ Image compressed successfully');
+        } catch(err) {
+          console.error('❌ Compression error:', err);
+          showToast('Image compression failed. Please try a smaller image.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
+          lucide.createIcons();
+          return;
+        }
+      }
+
       const payload = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         paymentMethod: methodBank.checked ? 'bank' : 'cash',
-        certificate: methodBank.checked ? base64File : null,
+        certificate: methodBank.checked ? compressedImage : null,
         submittedAt: new Date().toISOString()
       };
 
