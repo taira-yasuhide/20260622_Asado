@@ -644,7 +644,7 @@
         console.log('📤 Sending to GAS:', window.configGasUrl);
         const response = await fetch(window.configGasUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload)
         });
         
