@@ -4,19 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asado Party at Boggiani Flats</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind CSSでクラス名によるダークモード切替を有効化する設定 -->
   <script>
     tailwind.config = {
       darkMode: 'class'
     }
   </script>
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
@@ -49,29 +45,9 @@
       animation: lantern-glow 4s ease-in-out infinite alternate;
       transform-origin: top center;
     }
-    @keyframes gold-fall {
-      0% {
-        transform: translateY(-10px) rotate(0deg) translateX(0);
-        opacity: 0;
-      }
-      10% { opacity: 0.9; }
-      90% { opacity: 0.9; }
-      100% {
-        transform: translateY(100vh) rotate(360deg) translateX(40px);
-        opacity: 0;
-      }
-    }
-    .gold-flake {
-      position: absolute;
-      background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
-      border-radius: 2px;
-      pointer-events: none;
-      z-index: 1;
-      animation: gold-fall 9s linear infinite;
-    }
   </style>
 </head>
-<body class="bg-amber-50/30 text-stone-900 min-h-screen flex flex-col justify-between transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100 overflow-x-hidden font-sans">
+<body class="bg-amber-50/30 text-stone-900 min-h-screen flex flex-col transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100 overflow-x-hidden font-sans">
 
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
     <div class="absolute inset-0 izakaya-grid-light"></div>
@@ -103,7 +79,7 @@
     </div>
   </div>
 
-  <header class="relative w-full max-w-md mx-auto px-4 pt-5 flex justify-between items-center z-10">
+  <header class="relative w-full max-w-md mx-auto px-4 pt-5 pb-3 flex justify-between items-center z-10 border-b border-amber-100/40 dark:border-stone-800/40">
     <div class="flex items-center space-x-2.5">
       <div class="relative bg-amber-600 border border-amber-400/80 text-white p-1.5 rounded-full shadow-md">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -170,7 +146,7 @@
               <text x="280" y="28" fill="#fef08a" font-family="'Plus Jakarta Sans', sans-serif" font-weight="bold" font-size="14" text-anchor="middle">土</text>
             </svg>
           </div>
-
+          
           <div class="absolute -top-1 left-3 z-30 lantern-active">
             <svg class="w-9 h-14" viewBox="0 0 50 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M25 2 L25 10" stroke="#451a03" stroke-width="2"/>
@@ -226,14 +202,6 @@
                 <span class="text-[11px] text-stone-500 dark:text-stone-400 font-mono tracking-wider block">DATE & TIME</span>
                 <span class="text-base font-extrabold text-stone-800 dark:text-stone-200">June 22, 2026 / 19:00 ~ Late</span>
               </div>
-              <div class="flex items-center space-x-1.5 pt-1">
-                <svg class="w-4 h-6 text-amber-600/80" viewBox="0 0 24 32" fill="currentColor">
-                  <path d="M12 2C10 2 9 4 9 6C9 8 10 9 8 12C6 15 5 19 5 24C5 28 8 30 12 30C16 30 19 28 19 24C19 19 18 15 16 12C14 9 15 8 15 6C15 4 14 2 12 2Z"/>
-                </svg>
-                <svg class="w-3.5 h-3.5 text-amber-600/80" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M2 4C2 4 4 16 10 16C16 16 18 4 18 4H2Z"/>
-                </svg>
-              </div>
             </div>
 
             <div class="flex justify-between items-center text-left pt-2.5 border-t border-amber-200/40 dark:border-stone-800/40">
@@ -260,7 +228,7 @@
                 <span class="text-[11px] text-stone-500 dark:text-stone-400 font-mono tracking-wider block">PARTICIPATION FEE</span>
                 <span class="text-base font-extrabold text-rose-700 dark:text-rose-400 flex items-center gap-1">
                   <i data-lucide="wallet" class="w-4 h-4"></i>
-                  120.000 Gs
+                  80.000 Gs
                 </span>
               </div>
             </div>
@@ -288,14 +256,6 @@
               <div class="text-sm space-y-1">
                 <span class="font-bold text-rose-800 tracking-wide font-sans block dark:text-rose-400">BYOB (Bring Your Own Drinks)</span>
                 <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">Please bring your favorite beverages (beers, sake, wine, or refreshing soft drinks) to guarantee your perfect match for the evening!</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
-              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-emerald-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">金</span>
-              <div class="text-sm space-y-1">
-                <span class="font-bold text-emerald-800 tracking-wide font-sans block dark:text-emerald-400">Registration Fee</span>
-                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">120,000 Gs covers all the delicious grilled meats, sides, and a great night out with friends!</p>
               </div>
             </div>
           </div>
@@ -327,8 +287,8 @@
             <label id="methodBankLabel" class="relative flex items-start gap-3.5 p-4 border-2 border-stone-200 dark:border-stone-800 rounded-xl cursor-pointer transition-all hover:border-amber-300 dark:hover:border-amber-600">
               <input type="radio" id="methodBank" name="paymentMethod" value="bank" checked class="mt-1 w-5 h-5 cursor-pointer accent-amber-600"/>
               <div class="flex-grow">
-                <span class="font-bold text-amber-900 tracking-wide font-sans block dark:text-amber-400">Bank Transfer (Recommended)</span>
-                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">Transfer 120,000 Gs and upload your proof. We'll confirm and send you meeting details.</p>
+                <span class="font-bold text-amber-900 tracking-wide font-sans block dark:text-amber-400">Bank Transfer</span>
+                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">Transfer 80,000 Gs to the account below.</p>
               </div>
             </label>
 
@@ -336,33 +296,44 @@
               <input type="radio" id="methodCash" name="paymentMethod" value="cash" class="mt-1 w-5 h-5 cursor-pointer accent-amber-600"/>
               <div class="flex-grow">
                 <span class="font-bold text-rose-800 tracking-wide font-sans block dark:text-rose-400">Pay on the Day</span>
-                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">No upfront payment needed. Bring 120,000 Gs cash when you arrive!</p>
+                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">No upfront payment needed. Bring 80,000 Gs cash when you arrive!</p>
               </div>
             </label>
           </div>
         </div>
 
-        <div id="uploadContainer" class="space-y-3">
-          <div id="dropzone" class="relative border-2 border-dashed border-amber-300 dark:border-stone-700 rounded-xl p-8 text-center cursor-pointer transition-all hover:bg-amber-50 dark:hover:bg-stone-900/50">
-            <div id="dropzonePrompt" class="space-y-2">
-              <i data-lucide="upload-cloud" class="w-12 h-12 text-amber-500 mx-auto"></i>
-              <p class="text-sm font-bold text-amber-900 dark:text-amber-400">Drag your payment proof here</p>
-              <p class="text-xs text-stone-500 dark:text-stone-400">or click to browse (JPG, PNG, max 5MB)</p>
+        <!-- Bank Transfer Info -->
+        <div id="bankInfoContainer" class="relative rounded-2xl bg-emerald-50/40 border-2 border-emerald-300 p-4 shadow-sm overflow-hidden dark:bg-emerald-950/20 dark:border-emerald-800">
+          <h3 class="text-base font-extrabold text-emerald-800 uppercase tracking-wider mb-4 font-sans dark:text-emerald-400">Bank Transfer Details</h3>
+          
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between items-center py-2 border-b border-emerald-200 dark:border-emerald-800/40">
+              <span class="text-stone-600 dark:text-stone-400 font-semibold">Entidad (Bank):</span>
+              <span class="font-bold text-stone-900 dark:text-stone-100">Ueno Bank</span>
             </div>
-            <div id="previewContainer" class="hidden space-y-2">
-              <img id="imagePreview" class="max-h-40 mx-auto rounded-lg"/>
-              <p id="fileName" class="text-xs text-stone-600 dark:text-stone-400"></p>
-              <button id="removeImageBtn" type="button" class="text-xs text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300 font-semibold">Remove Image</button>
+            <div class="flex justify-between items-center py-2 border-b border-emerald-200 dark:border-emerald-800/40">
+              <span class="text-stone-600 dark:text-stone-400 font-semibold">N° de Cuenta:</span>
+              <span class="font-bold text-stone-900 dark:text-stone-100">6192178180</span>
             </div>
-            <input type="file" id="certificate" class="hidden" accept="image/*"/>
+            <div class="flex justify-between items-center py-2 border-b border-emerald-200 dark:border-emerald-800/40">
+              <span class="text-stone-600 dark:text-stone-400 font-semibold">Titular (Name):</span>
+              <span class="font-bold text-stone-900 dark:text-stone-100">Yasuhide Taira</span>
+            </div>
+            <div class="flex justify-between items-center py-2">
+              <span class="text-stone-600 dark:text-stone-400 font-semibold">CI:</span>
+              <span class="font-bold text-stone-900 dark:text-stone-100">9312214</span>
+            </div>
           </div>
         </div>
 
-        <div id="cashPrompt" class="hidden bg-amber-50 dark:bg-stone-950 border border-amber-200 dark:border-stone-800 rounded-xl p-4 text-center space-y-2">
-          <p class="text-sm font-bold text-amber-900 dark:text-amber-400">💰 Please bring 120,000 Gs in cash</p>
-          <p class="text-xs text-stone-600 dark:text-stone-400">We'll see you at the event!</p>
+        <!-- Payment Instructions -->
+        <div class="relative rounded-2xl bg-amber-50 dark:bg-amber-950/20 border-2 border-amber-300 dark:border-amber-800 p-4 shadow-sm">
+          <p class="text-sm font-bold text-amber-900 dark:text-amber-400 leading-relaxed">
+            💳 Please transfer 80,000 Gs to the account above. Once you have completed the transfer, click the "COMPLETE REGISTRATION" button below to finalize your registration.
+          </p>
         </div>
 
+        <!-- Action Buttons -->
         <div class="flex gap-3 pt-2">
           <button id="backToStep1" type="button" class="flex-1 px-4 py-3 bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-bold rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
@@ -415,39 +386,10 @@
   <div id="toastContainer" class="fixed bottom-4 left-4 right-4 max-w-sm z-50 pointer-events-none"></div>
 
   <script>
-    // ================== GAS URL（ハードコーディング） ==================
+    // ================== GAS URL ==================
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbxdLDZ78Q6U0Lw_YM94L05-gtiDt9QJfeHZvDz-Gtm40C1YU5syLtg4CI0EgR8h3i1FYg/exec';
     window.configGasUrl = GAS_URL;
     console.log('✅ GAS URL loaded:', GAS_URL);
-
-    // ================== 画像圧縮関数 ==================
-    async function compressImage(base64Data, quality = 0.6, maxWidth = 800) {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          let width = img.width;
-          let height = img.height;
-          
-          // リサイズ計算
-          if (width > maxWidth) {
-            height = (height * maxWidth) / width;
-            width = maxWidth;
-          }
-          
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          
-          const compressed = canvas.toDataURL('image/jpeg', quality);
-          console.log(`📦 Compressed from ${Math.round(base64Data.length / 1024)}KB to ${Math.round(compressed.length / 1024)}KB`);
-          resolve(compressed);
-        };
-        img.onerror = () => reject(new Error('Image compression failed'));
-        img.src = base64Data;
-      });
-    }
 
     function showToast(message, type = 'success') {
       const toastContainer = document.getElementById('toastContainer');
@@ -532,18 +474,6 @@
 
     const methodBank = document.getElementById('methodBank');
     const methodCash = document.getElementById('methodCash');
-    const methodBankLabel = document.getElementById('methodBankLabel');
-    const methodCashLabel = document.getElementById('methodCashLabel');
-    const uploadContainer = document.getElementById('uploadContainer');
-    const cashPrompt = document.getElementById('cashPrompt');
-
-    const dropzone = document.getElementById('dropzone');
-    const certificateInput = document.getElementById('certificate');
-    const dropzonePrompt = document.getElementById('dropzonePrompt');
-    const previewContainer = document.getElementById('previewContainer');
-    const imagePreview = document.getElementById('imagePreview');
-    const fileName = document.getElementById('fileName');
-    const removeImageBtn = document.getElementById('removeImageBtn');
 
     step1Form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -565,124 +495,21 @@
       step1Page.classList.remove('hidden');
     });
 
-    function updateMethodsUI() {
-      if (methodBank.checked) {
-        methodBankLabel.classList.add('border-amber-500', 'bg-amber-500/5');
-        methodBankLabel.classList.remove('border-stone-200', 'dark:border-stone-800');
-        methodCashLabel.classList.remove('border-amber-500', 'bg-amber-500/5');
-        methodCashLabel.classList.add('border-stone-200', 'dark:border-stone-800');
-        uploadContainer.classList.remove('hidden');
-        cashPrompt.classList.add('hidden');
-      } else {
-        methodCashLabel.classList.add('border-amber-500', 'bg-amber-500/5');
-        methodCashLabel.classList.remove('border-stone-200', 'dark:border-stone-800');
-        methodBankLabel.classList.remove('border-amber-500', 'bg-amber-500/5');
-        methodBankLabel.classList.add('border-stone-200', 'dark:border-stone-800');
-        uploadContainer.classList.add('hidden');
-        cashPrompt.classList.remove('hidden');
-      }
-    }
-
-    methodBank.addEventListener('change', updateMethodsUI);
-    methodCash.addEventListener('change', updateMethodsUI);
-
-    dropzone.addEventListener('click', (e) => {
-      if (!e.target.closest('#removeImageBtn')) {
-        certificateInput.click();
-      }
-    });
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropzone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropzone.classList.add('border-amber-500', 'bg-amber-500/5');
-      }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropzone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropzone.classList.remove('border-amber-500', 'bg-amber-500/5');
-      }, false);
-    });
-
-    dropzone.addEventListener('drop', (e) => {
-      const dt = e.dataTransfer;
-      if (dt.files.length > 0) handleImageFile(dt.files[0]);
-    });
-
-    certificateInput.addEventListener('change', (e) => {
-      if (e.target.files.length > 0) handleImageFile(e.target.files[0]);
-    });
-
-    let base64File = null;
-
-    function handleImageFile(file) {
-      if (!file.type.startsWith('image/')) {
-        showToast('Please upload an image file.', 'error');
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        showToast('File must not exceed 5MB.', 'error');
-        return;
-      }
-      fileName.innerText = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        imagePreview.src = e.target.result;
-        base64File = e.target.result;
-        dropzonePrompt.classList.add('hidden');
-        previewContainer.classList.remove('hidden');
-      };
-      reader.readAsDataURL(file);
-    }
-
-    removeImageBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      certificateInput.value = '';
-      base64File = null;
-      imagePreview.src = '';
-      previewContainer.classList.add('hidden');
-      dropzonePrompt.classList.remove('hidden');
-    });
-
     submitBtn.addEventListener('click', async (e) => {
       e.preventDefault();
-      if (methodBank.checked && !base64File) {
-        showToast('Please upload your payment certificate image.', 'error');
-        return;
-      }
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <span>Sending Receipt...</span>
+        <span>Sending...</span>
       `;
-
-      // 画像を圧縮
-      let compressedImage = null;
-      if (methodBank.checked && base64File) {
-        try {
-          console.log('📦 Compressing image...');
-          compressedImage = await compressImage(base64File, 0.6);
-          console.log('✅ Image compressed successfully');
-        } catch(err) {
-          console.error('❌ Compression error:', err);
-          showToast('Image compression failed. Please try a smaller image.', 'error');
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
-          lucide.createIcons();
-          return;
-        }
-      }
 
       const payload = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         paymentMethod: methodBank.checked ? 'bank' : 'cash',
-        certificate: methodBank.checked ? compressedImage : null,
         submittedAt: new Date().toISOString()
       };
 
@@ -716,7 +543,7 @@
       summaryName.innerText = payload.name;
       summaryEmail.innerText = payload.email;
       if (payload.paymentMethod === 'bank') {
-        summaryMethod.innerText = 'Paid via Bank Transfer';
+        summaryMethod.innerText = 'Bank Transfer';
         summaryMethod.className = 'font-bold px-2.5 py-1 rounded-lg text-xs bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400';
       } else {
         summaryMethod.innerText = 'Paying Cash on Day';
@@ -735,9 +562,7 @@
 
     btnRestart.addEventListener('click', () => {
       step1Form.reset();
-      removeImageBtn.click();
       methodBank.checked = true;
-      updateMethodsUI();
       progressLine1.className = 'h-full bg-amber-500 w-0 transition-all duration-300';
       progressLine2.className = 'h-full bg-amber-500 w-0 transition-all duration-300';
       step2Dot.className = 'w-9 h-9 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-sm font-bold transition-all duration-300 dark:bg-stone-800 dark:text-stone-600';
