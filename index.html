@@ -22,13 +22,11 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    /* 障子・明るい格子戸をイメージした和風グリッド */
     .izakaya-grid-light {
       background-size: 26px 26px;
       background-image: linear-gradient(to right, rgba(217, 119, 6, 0.05) 1px, transparent 1px),
                         linear-gradient(to bottom, rgba(217, 119, 6, 0.05) 1px, transparent 1px);
     }
-    /* のれんのスウェー（揺れ）アニメーション */
     @keyframes noren-swing {
       0%, 100% { transform: rotate(0deg); }
       50% { transform: rotate(1.5deg); }
@@ -37,7 +35,6 @@
       animation: noren-swing 4.5s ease-in-out infinite alternate;
       transform-origin: top center;
     }
-    /* 提灯の微小な揺れと光の明滅効果 */
     @keyframes lantern-glow {
       0%, 100% { 
         filter: drop-shadow(0 2px 10px rgba(239, 68, 68, 0.35));
@@ -52,7 +49,6 @@
       animation: lantern-glow 4s ease-in-out infinite alternate;
       transform-origin: top center;
     }
-    /* 舞い散るおめでたいお祭りの金箔アニメーション */
     @keyframes gold-fall {
       0% {
         transform: translateY(-10px) rotate(0deg) translateX(0);
@@ -77,12 +73,10 @@
 </head>
 <body class="bg-amber-50/30 text-stone-900 min-h-screen flex flex-col justify-between transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100 overflow-x-hidden font-sans">
 
-  <!-- お祭り背景デコレーション -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
     <div class="absolute inset-0 izakaya-grid-light"></div>
     <div class="absolute inset-0 opacity-[0.04] dark:opacity-[0.07] bg-[radial-gradient(circle_at_100%_150%,transparent_24%,#d97706_24%,#d97706_28%,transparent_28%,transparent)] bg-[size:40px_40px]"></div>
     
-    <!-- 花火 SVGパターン -->
     <div class="absolute top-8 left-2 w-48 h-48 opacity-[0.1] dark:opacity-[0.18]">
       <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" class="text-orange-500 animate-pulse">
         <circle cx="50" cy="50" r="1" fill="currentColor"/>
@@ -109,7 +103,6 @@
     </div>
   </div>
 
-  <!-- ヘッダー -->
   <header class="relative w-full max-w-md mx-auto px-4 pt-5 flex justify-between items-center z-10">
     <div class="flex items-center space-x-2.5">
       <div class="relative bg-amber-600 border border-amber-400/80 text-white p-1.5 rounded-full shadow-md">
@@ -127,25 +120,18 @@
     </div>
     
     <div class="flex items-center space-x-2">
-      <button id="setupBtn" class="hidden flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-white/90 border border-amber-200 text-stone-700 hover:bg-amber-50 dark:bg-stone-900/90 dark:border-stone-800 dark:text-stone-300 shadow-sm text-xs font-semibold">
-        <i data-lucide="database" class="w-3.5 h-3.5 text-amber-600"></i>
-        <span>Settings</span>
-      </button>
-
       <button id="themeToggle" class="p-1.5 rounded-xl bg-white/90 border border-amber-200 text-stone-700 dark:bg-stone-900/90 dark:border-stone-800 dark:text-stone-300 shadow-sm">
         <i id="themeIcon" data-lucide="moon" class="w-3.5 h-3.5"></i>
       </button>
     </div>
   </header>
 
-  <!-- メインフォームカード -->
   <main class="relative flex-grow flex items-center justify-center p-3 z-10 w-full max-w-md mx-auto">
     <div class="w-full bg-white/95 dark:bg-stone-900/95 border border-amber-100 dark:border-stone-800/80 rounded-2xl shadow-xl p-5 md:p-6 space-y-5 transition-all duration-300 relative overflow-hidden">
       
       <div class="absolute top-0 bottom-0 left-0 w-1 bg-amber-500/30"></div>
       <div class="absolute top-0 bottom-0 right-0 w-1 bg-amber-500/30"></div>
 
-      <!-- 進捗バー -->
       <div class="flex items-center justify-between px-1 pb-1.5 border-b border-amber-100 dark:border-stone-800/60">
         <div class="flex flex-col items-center">
           <div id="step1Dot" class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold ring-4 ring-amber-100 dark:ring-amber-950/40 transition-all duration-300">壱</div>
@@ -269,7 +255,6 @@
               </a>
             </div>
 
-            <!-- Participation Fee Section -->
             <div class="flex justify-between items-center text-left pt-2.5 border-t border-amber-200/40 dark:border-stone-800/40">
               <div>
                 <span class="text-[11px] text-stone-500 dark:text-stone-400 font-mono tracking-wider block">PARTICIPATION FEE</span>
@@ -282,7 +267,6 @@
           </div>
         </div>
 
-        <!-- 🏮 居酒屋風お品書きボード -->
         <div class="relative rounded-2xl bg-amber-50/40 border-2 border-amber-300 p-4 shadow-sm overflow-hidden dark:bg-stone-950/80 dark:border-stone-800">
           <div class="absolute top-0 inset-x-0 h-1 bg-[repeating-linear-gradient(45deg,#d97706,#d97706_10px,#fef3c7_10px,#fef3c7_20px)]"></div>
           
@@ -292,44 +276,31 @@
           
           <div class="grid grid-cols-1 gap-3">
             <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
-              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-amber-500 text-white font-sans font-bold flex items-center justify-center text-base shadow">
-                食
-              </span>
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-amber-500 text-white font-sans font-bold flex items-center justify-center text-base shadow">食</span>
               <div class="text-sm space-y-1">
                 <span class="font-bold text-amber-900 tracking-wide font-sans block dark:text-amber-400">Foods Are Provided</span>
-                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
-                  We will prepare the food, but feel free to bring anything else you would like to eat or grill!
-                </p>
+                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">We will prepare the food, but feel free to bring anything else you would like to eat or grill!</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
-              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-rose-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">
-                酒
-              </span>
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-rose-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">酒</span>
               <div class="text-sm space-y-1">
                 <span class="font-bold text-rose-800 tracking-wide font-sans block dark:text-rose-400">BYOB (Bring Your Own Drinks)</span>
-                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
-                  Please bring your favorite beverages (beers, sake, wine, or refreshing soft drinks) to guarantee your perfect match for the evening!
-                </p>
+                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">Please bring your favorite beverages (beers, sake, wine, or refreshing soft drinks) to guarantee your perfect match for the evening!</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-amber-200/60 shadow-sm transition dark:bg-stone-900 dark:border-stone-800">
-              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-emerald-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">
-                金
-              </span>
+              <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-emerald-600 text-white font-sans font-bold flex items-center justify-center text-base shadow">金</span>
               <div class="text-sm space-y-1">
                 <span class="font-bold text-emerald-800 tracking-wide font-sans block dark:text-emerald-400">Registration Fee</span>
-                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">
-                  120,000 Gs covers all the delicious grilled meats, sides, and a great night out with friends!
-                </p>
+                <p class="text-stone-600 leading-relaxed font-sans dark:text-stone-300">120,000 Gs covers all the delicious grilled meats, sides, and a great night out with friends!</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Form -->
         <form id="step1Form" class="space-y-4" onsubmit="return false;">
           <div class="flex flex-col gap-2">
             <label for="name" class="text-sm font-bold text-stone-700 dark:text-stone-300">Full Name *</label>
@@ -350,36 +321,27 @@
       <!-- STEP 2: PAYMENT -->
       <div id="step2Page" class="step-page space-y-5 hidden">
         <div class="relative rounded-2xl bg-amber-50/40 border-2 border-amber-300 p-4 shadow-sm overflow-hidden dark:bg-stone-950/80 dark:border-stone-800">
-          <h3 class="text-base font-extrabold text-amber-800 uppercase tracking-wider mb-4 font-sans dark:text-amber-400">
-            How will you pay?
-          </h3>
+          <h3 class="text-base font-extrabold text-amber-800 uppercase tracking-wider mb-4 font-sans dark:text-amber-400">How will you pay?</h3>
 
           <div class="space-y-3">
-            <!-- Bank Transfer Option -->
             <label id="methodBankLabel" class="relative flex items-start gap-3.5 p-4 border-2 border-stone-200 dark:border-stone-800 rounded-xl cursor-pointer transition-all hover:border-amber-300 dark:hover:border-amber-600">
               <input type="radio" id="methodBank" name="paymentMethod" value="bank" checked class="mt-1 w-5 h-5 cursor-pointer accent-amber-600"/>
               <div class="flex-grow">
                 <span class="font-bold text-amber-900 tracking-wide font-sans block dark:text-amber-400">Bank Transfer (Recommended)</span>
-                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">
-                  Transfer 120,000 Gs and upload your proof. We'll confirm and send you meeting details.
-                </p>
+                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">Transfer 120,000 Gs and upload your proof. We'll confirm and send you meeting details.</p>
               </div>
             </label>
 
-            <!-- Cash Option -->
             <label id="methodCashLabel" class="relative flex items-start gap-3.5 p-4 border-2 border-stone-200 dark:border-stone-800 rounded-xl cursor-pointer transition-all hover:border-amber-300 dark:hover:border-amber-600">
               <input type="radio" id="methodCash" name="paymentMethod" value="cash" class="mt-1 w-5 h-5 cursor-pointer accent-amber-600"/>
               <div class="flex-grow">
                 <span class="font-bold text-rose-800 tracking-wide font-sans block dark:text-rose-400">Pay on the Day</span>
-                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">
-                  No upfront payment needed. Bring 120,000 Gs cash when you arrive!
-                </p>
+                <p class="text-sm text-stone-600 leading-relaxed font-sans dark:text-stone-300 mt-1">No upfront payment needed. Bring 120,000 Gs cash when you arrive!</p>
               </div>
             </label>
           </div>
         </div>
 
-        <!-- Upload Container (Bank Only) -->
         <div id="uploadContainer" class="space-y-3">
           <div id="dropzone" class="relative border-2 border-dashed border-amber-300 dark:border-stone-700 rounded-xl p-8 text-center cursor-pointer transition-all hover:bg-amber-50 dark:hover:bg-stone-900/50">
             <div id="dropzonePrompt" class="space-y-2">
@@ -396,13 +358,11 @@
           </div>
         </div>
 
-        <!-- Cash Prompt (Cash Only) -->
         <div id="cashPrompt" class="hidden bg-amber-50 dark:bg-stone-950 border border-amber-200 dark:border-stone-800 rounded-xl p-4 text-center space-y-2">
           <p class="text-sm font-bold text-amber-900 dark:text-amber-400">💰 Please bring 120,000 Gs in cash</p>
           <p class="text-xs text-stone-600 dark:text-stone-400">We'll see you at the event!</p>
         </div>
 
-        <!-- Action Buttons -->
         <div class="flex gap-3 pt-2">
           <button id="backToStep1" type="button" class="flex-1 px-4 py-3 bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-bold rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
@@ -452,34 +412,14 @@
     </div>
   </main>
 
-  <!-- Setup Modal -->
-  <div id="setupModal" class="fixed inset-0 bg-black/30 dark:bg-black/50 z-50 flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-200">
-    <div class="transform scale-95 transition-transform duration-200 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
-      <div class="flex justify-between items-center pb-3 border-b border-amber-100 dark:border-stone-800">
-        <h2 class="text-lg font-extrabold text-stone-900 dark:text-stone-100">GAS Configuration</h2>
-        <button id="closeModalBtn" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition">
-          <i data-lucide="x" class="w-5 h-5 text-stone-500"></i>
-        </button>
-      </div>
-      <div class="space-y-3">
-        <div class="flex flex-col gap-2">
-          <label for="gasUrl" class="text-sm font-bold text-stone-700 dark:text-stone-300">GAS Web App URL</label>
-          <input type="text" id="gasUrl" placeholder="https://script.google.com/macros/s/..." class="px-4 py-2.5 rounded-xl border border-amber-200 bg-white text-stone-900 placeholder-stone-400 dark:bg-stone-900 dark:border-stone-700 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-600 text-sm"/>
-          <p class="text-xs text-stone-500 dark:text-stone-400">Enter your Google Apps Script deployment URL</p>
-        </div>
-      </div>
-      <div class="flex gap-3 pt-2">
-        <button id="testConfigBtn" type="button" class="flex-1 px-4 py-2.5 bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 text-white font-bold rounded-lg text-sm transition-colors">
-          Save Config
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Container -->
   <div id="toastContainer" class="fixed bottom-4 left-4 right-4 max-w-sm z-50 pointer-events-none"></div>
 
   <script>
+    // ================== GAS URL（ハードコーディング） ==================
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycby1ffoL1ocTr8epQK6Xt-HOMNd5jyb0G3bKIBkjau8c05zYN2BvXqKCBoh3Ioq1WybS1Q/exec';
+    window.configGasUrl = GAS_URL;
+    console.log('✅ GAS URL loaded:', GAS_URL);
+
     function showToast(message, type = 'success') {
       const toastContainer = document.getElementById('toastContainer');
       const toast = document.createElement('div');
@@ -517,14 +457,6 @@
     window.onload = function () {
       lucide.createIcons();
       
-      const urlParams = new URLSearchParams(window.location.search);
-      const setupBtn = document.getElementById('setupBtn');
-      if (urlParams.get('admin') === 'true') {
-        setupBtn.classList.remove('hidden');
-      } else {
-        setupBtn.classList.add('hidden');
-      }
-
       const themeToggle = document.getElementById('themeToggle');
       const themeIcon = document.getElementById('themeIcon');
 
@@ -548,41 +480,6 @@
           themeIcon.setAttribute('data-lucide', 'sun');
         }
         lucide.createIcons();
-      });
-
-      const setupModal = document.getElementById('setupModal');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      const saveConfigBtn = document.getElementById('saveConfigBtn');
-      const testConfigBtn = document.getElementById('testConfigBtn');
-      const gasUrlInput = document.getElementById('gasUrl');
-
-      setupBtn.addEventListener('click', () => {
-        setupModal.classList.remove('pointer-events-none', 'opacity-0');
-        setupModal.querySelector('.transform').classList.remove('scale-95');
-        setupModal.querySelector('.transform').classList.add('scale-100');
-      });
-
-      function closeModal() {
-        setupModal.classList.add('pointer-events-none', 'opacity-0');
-        setupModal.querySelector('.transform').classList.remove('scale-100');
-        setupModal.querySelector('.transform').classList.add('scale-95');
-      }
-
-      closeModalBtn.addEventListener('click', closeModal);
-      setupModal.addEventListener('click', (e) => {
-        if (e.target === setupModal) closeModal();
-      });
-
-      testConfigBtn.addEventListener('click', () => {
-        const url = gasUrlInput.value.trim();
-        if (url && !url.startsWith('https://script.google.com/')) {
-          showToast('Invalid GAS URL format.', 'error');
-          return;
-        }
-        localStorage.setItem('gas_web_app_url', url);
-        window.configGasUrl = url;
-        showToast('GAS URL saved successfully!', 'success');
-        closeModal();
       });
     };
 
@@ -618,8 +515,6 @@
     const imagePreview = document.getElementById('imagePreview');
     const fileName = document.getElementById('fileName');
     const removeImageBtn = document.getElementById('removeImageBtn');
-
-    window.configGasUrl = localStorage.getItem('gas_web_app_url') || '';
 
     step1Form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -745,33 +640,29 @@
         submittedAt: new Date().toISOString()
       };
 
-      if (window.configGasUrl) {
-        try {
-          const response = await fetch(window.configGasUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          
-          const result = await response.json();
-          console.log('Success:', result);
-          showSuccessSummary(payload);
-        } catch (error) {
-          console.error('Submit error:', error);
-          showToast('Failed to submit: ' + error.message, 'error');
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
-          lucide.createIcons();
+      try {
+        console.log('📤 Sending to GAS:', window.configGasUrl);
+        const response = await fetch(window.configGasUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        console.log('📥 Response status:', response.status);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      } else {
-        setTimeout(() => {
-          showToast('Submitted as Local Demo. Setup GAS URL for Google Sheet recording!', 'info');
-          showSuccessSummary(payload);
-        }, 1200);
+        
+        const result = await response.json();
+        console.log('✅ GAS Response:', result);
+        showSuccessSummary(payload);
+      } catch (error) {
+        console.error('❌ Submit error:', error);
+        showToast('Failed to submit: ' + error.message, 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>COMPLETE REGISTRATION</span><i data-lucide="check" class="w-4.5 h-4.5"></i>`;
+        lucide.createIcons();
       }
     });
 
